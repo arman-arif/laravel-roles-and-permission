@@ -63,6 +63,9 @@
 
                                     <a class="dropdown-item" href="{{ route('dash') }}">Dashboard</a>
 
+                                    <a class="dropdown-item" href="{{ route('role.index') }}">Roles</a>
+                                    <a class="dropdown-item" href="{{ route('permission.index') }}">Permissions</a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

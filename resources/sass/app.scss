@@ -9,8 +9,17 @@
 
 
 .btn{
-
     &-rounded{
         border-radius: 50px !important;
     }
+}
+
+.form-control {
+    &.rounded{
+        border-radius: 50px !important;
+    }
+}
+
+.toast-top-right {
+    margin-top: 60px !important;
 }
