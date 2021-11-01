@@ -17,8 +17,10 @@
                     <p class="text-center">{{ __('You are logged in!') }}</p>
 
                     <div class="my-3 mx-auto text-center w-50">
-                        <a href="{{ route('post.index') }}" class="btn btn-primary btn-rounded btn-block mb-2">Posts</a>
                         <a href="{{ route('post.create') }}" class="btn btn-success btn-rounded btn-block mb-2">New Post</a>
+                        <a href="{{ route('post.index') }}" class="btn btn-primary btn-rounded btn-block mb-2">Posts</a>
+                        <a href="{{ route('post.index') }}" class="btn btn-primary btn-rounded btn-block mb-2">Categories</a>
+                        <a href="{{ route('post.index') }}" class="btn btn-primary btn-rounded btn-block mb-2">Tags</a>
                     </div>
                 </div>
             </div>

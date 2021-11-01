@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Like;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::paginate(10);
+        $posts = Post::latest()->paginate();
         return view('posts.index')->with('posts',$posts);
     }
 
@@ -20,8 +21,8 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'title'     => 'required|min:10|max:255',
+        $this->validate($request,[
+            'title'     => 'required|min:5|max:255',
             'desc'      => 'required|string|min:15'
         ]);
 
@@ -29,6 +30,52 @@ class PostController extends Controller
         $post->user_id = auth()->user()->id;
         $post->save();
 
-        return redirect()->route('post.index')->with('success', 'Post saved successfully!');
+        toastSuccess('Post added successfully', "Success!");
+
+        return redirect()->route('post.index');
+    }
+
+    public function edit($id)
+    {
+        $post = Post::find($id);
+        return view('posts.edit', compact('post'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title'     => 'required|min:5|max:255',
+            'desc'      => 'required|string|min:15'
+        ]);
+
+        $post = Post::find($id);
+        $post->update($request->except(['_token', '_method']));
+
+        toastSuccess('Post updated successfully', "Success!");
+
+        return redirect()->route('post.index');
+    }
+
+    public function delete($id){
+        $post = Post::find($id);
+        $post->delete();
+
+        toastInfo('Post deleted successfully', "Success!");
+
+        return redirect()->route('post.index');
+    }
+
+    public function show($id)
+    {
+        $post = Post::find($id);
+        return view('posts.show', compact('post'));
+    }
+
+    public function like($id)
+    {
+        $post = Post::find($id);
+        $post->likes()->save(new Like);
+
+        return redirect()->back();
     }
 }
