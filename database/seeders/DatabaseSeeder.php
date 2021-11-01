@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
@@ -25,6 +26,12 @@ class DatabaseSeeder extends Seeder
             ['name' => 'tutorial', 'slug' => Str::slug('tutorial')],
             ['name' => 'practicle', 'slug' => Str::slug('practicle')],
             ['name' => 'web technology', 'slug' => Str::slug('web technology')],
+        ]);
+
+        Category::insert([
+            ['name' => 'Books', 'slug' => Str::slug('Books')],
+            ['name' => 'Technology', 'slug' => Str::slug('Technology')],
+            ['name' => 'Softwares', 'slug' => Str::slug('Softwares')],
         ]);
     }
 }
