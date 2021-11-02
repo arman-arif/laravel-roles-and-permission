@@ -37,6 +37,6 @@ class PermissionController extends Controller
 
     public function getRolePermission()
     {
-
+        return view('permissions.to-role');
     }
 }
